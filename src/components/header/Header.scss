@@ -8,6 +8,7 @@
   background-color: $color-dark-blue;
 
   @media (max-width: $mobile-width) {
+    padding-top: 9.5px;
     padding-bottom: 79px;
   }
 }
@@ -39,7 +40,7 @@
   @media (max-width: $mobile-width) {
     width: unset;
 
-    .nav, .header__button {
+    .nav, .button {
       display: none;
     }
   }
@@ -109,27 +110,5 @@
     &:focus {
       outline: 1px solid $color-secondary;
     }
-  }
-}
-
-.header__button {
-  width: 138px;
-  min-width: 138px;
-  height: 48px;
-  text-transform: uppercase;
-  text-align: center;
-  background-color: transparent;
-  border: 1px solid $color-white-opacity-29;
-  border-radius: 6px;
-
-  @include font(1.4rem, 1.4rem, $color-white, $weight: 900);
-
-  &:hover {
-    border-color: $color-secondary;
-    cursor: pointer;
-  }
-
-  &:focus {
-    outline: 1px solid $color-secondary;
   }
 }

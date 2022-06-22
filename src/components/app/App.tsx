@@ -1,3 +1,4 @@
+import Gallery from '../gallery/Gallery';
 import Header from '../header/Header';
 
 const App = () => {
@@ -5,7 +6,7 @@ const App = () => {
     <>
       <Header />
       <main className="main">
-        Hello World!
+        <Gallery />
       </main>
     </>
   );

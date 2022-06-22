@@ -1,6 +1,7 @@
 @import "normalize.css";
 @import './fontface';
-@import './variables.scss';
+@import './mixins';
+@import './variables';
 
 html {
   font-size: 10px;
@@ -15,7 +16,6 @@ body {
   margin: 0;
   background-color: $color-primary;
   font-family: 'Epilogue', sans-serif;
-  min-width: $min-body-width;
 }
 
 h1, h2, h3, h4, h5, h6, p {
@@ -36,4 +36,32 @@ ul, li {
   @media (max-width: $mobile-width) {
     padding: 0 23px;
   }
+}
+
+.button {
+  width: 138px;
+  min-width: 138px;
+  height: 48px;
+  text-transform: uppercase;
+  text-align: center;
+  background-color: transparent;
+  border: 1px solid $color-white-opacity-29;
+  border-radius: 6px;
+
+  @include font(1.4rem, 1.4rem, $color-white, $weight: 900);
+
+  &:hover {
+    border-color: $color-secondary;
+    cursor: pointer;
+
+    &:disabled {
+      border-color: $color-white-opacity-29;
+      cursor: unset;
+    }
+  }
+
+  &:focus {
+    outline: 1px solid $color-secondary;
+  }
+
 }

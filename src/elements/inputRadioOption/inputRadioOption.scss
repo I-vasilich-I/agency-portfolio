@@ -1,0 +1,30 @@
+@import '../../styles/mixins';
+@import '../../styles/variables';
+
+.radio__label {
+  position: relative;
+  --label-color:  rgba(57 20 0 / .64);
+  background-color: $color-primary;
+  cursor: pointer;
+
+  @include font(1.6rem, 3.2rem);
+  color: var(--label-color);
+  
+  &:hover, &:active, &:focus, &:focus-within {
+    color: $color-secondary;
+  }
+
+  // .radio__input:checked {
+  //   --label-color: $color-secondary;
+  // }
+}
+
+.radio__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  z-index: -1;
+  top: 8px;
+  left: 8px;
+  cursor: pointer;
+}
