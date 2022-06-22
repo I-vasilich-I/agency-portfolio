@@ -1,0 +1,9 @@
+@mixin font($size, $height, $color: $color-white, $family: "Epilogue", $style: normal, $weight: normal, $spacing: 0) {
+  font-family: $family;
+  font-style: $style;
+  font-weight: $weight;
+  font-size: $size;
+  line-height: $height;
+  letter-spacing: $spacing;
+  color: $color;
+}

@@ -2,12 +2,38 @@
 @import './fontface';
 @import './variables.scss';
 
-*, *::after, *::before {
+html {
+  font-size: 10px;
   box-sizing: border-box;
 }
 
+*, *::after, *::before {
+  box-sizing: inherit;
+}
+
 body {
-  margin: 0 auto;
+  margin: 0;
   background-color: $color-primary;
   font-family: 'Epilogue', sans-serif;
+  min-width: $min-body-width;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+
+ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  margin: 0 auto;
+  max-width: $max-content-width;
+  width: 100%;
+  padding: 0 135px;
+
+  @media (max-width: $mobile-width) {
+    padding: 0 23px;
+  }
 }

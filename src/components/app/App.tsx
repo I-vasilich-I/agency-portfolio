@@ -1,10 +1,13 @@
-import React from 'react';
+import Header from '../header/Header';
 
-function App() {
+const App = () => {
   return (
-    <main className="main">
-      Hello World!
-    </main>
+    <>
+      <Header />
+      <main className="main">
+        Hello World!
+      </main>
+    </>
   );
 }
 
