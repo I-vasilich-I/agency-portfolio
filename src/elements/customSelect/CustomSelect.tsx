@@ -1,15 +1,17 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* based on https://css-tricks.com/striking-a-balance-between-native-and-custom-select-elements/ */
-import "./CustomSelect.scss";
+/* based on https://css-tricks.com/striking-a-balance-between-native-and-custom-select-elements/
+  I've made this custom select few months before, on game-store project, 
+  there's PR link: https://github.com/I-vasilich-I/game-store/pull/8 
+*/
 import { ChangeEvent, useRef, useState, useEffect, memo } from "react";
 import classnames from "classnames";
+import arrow from '../../assets/images/triangle.svg';
+import "./CustomSelect.scss";
 
 interface IProps {
   options: string[];
   selectedOption?: number;
   label: string;
-  dispatcher?: ((value: string) => void) | null;
+  dispatcher?: ((value: number) => void) | null;
 }
 
 const CustomSelect: React.FC<IProps> = ({ options, selectedOption = -1, label, dispatcher = null }) => {
@@ -50,17 +52,12 @@ const CustomSelect: React.FC<IProps> = ({ options, selectedOption = -1, label, d
   useEffect(() => {
     document.addEventListener("click", handleOutsideClick);
     return () => document.removeEventListener("click", handleOutsideClick);
-  }, [isActive]);
+  });
 
   useEffect(() => {
-    if (label === "Criteria") {
-      dispatcher?.(selectedValue.toLowerCase());
-    }
-
-    if (label === "Type" || label === "Age") {
-      dispatcher?.(selectedValue);
-    }
-  }, [selectedValue]);
+    const category = options.indexOf(selectedValue);
+    dispatcher?.(category);
+  }, [selectedValue, dispatcher, options]);
 
   return (
     <div className="select">
@@ -90,7 +87,10 @@ const CustomSelect: React.FC<IProps> = ({ options, selectedOption = -1, label, d
           aria-hidden={isActive}
           onClick={handleOpen}
         >
-          <div className="select__custom-trigger">{selectedValue}</div>
+          <div className="select__custom-trigger">
+            {selectedValue}
+            <img src={arrow} alt="arrow" className="arrow" width={10} height={6}/>
+          </div>
           <div className="select__custom-options">
             {options.map((elem) => (
               <div key={elem} className="select__custom-option" data-value={elem} onClick={() => handleClick(elem)}>
