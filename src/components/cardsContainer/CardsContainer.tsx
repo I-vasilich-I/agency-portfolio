@@ -1,19 +1,14 @@
-import { Suspense, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { CARDS } from "../../constants";
 import CategoryContext from "../../contextProviders/contextProviders";
-import Skeleton from "../../elements/skeleton/Skeleton";
 import { useKeyPress } from "../../hooks/useKeyPress";
-import { ICard } from "../../types";
 import Card from "../card/Card";
 
 const CardsContainer = () => {
-  const [cards, setCards] = useState(CARDS.slice(0, 9));
-  const [shownCards, setShownCards] = useState<ICard[]>([]);
-  const [isDisabled, setIsDisabled] = useState(false);
-  const { key, setKey } = useKeyPress();
   const { category } = useContext(CategoryContext);
-  const skeletons = Array(3).map(() => <Skeleton />);
-  const noCards = shownCards.length === 0;
+  const { key, setKey } = useKeyPress();
+  const [cards, setCards] = useState(CARDS.slice(0, 9));
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const handleClick = () => {
     if (isDisabled) {
@@ -24,9 +19,12 @@ const CardsContainer = () => {
     setIsDisabled(true);
   };
 
-  useEffect(() => {
-    setShownCards(cards.filter((el) => category === 0 || el.categoryId === category));
-  }, [category, cards]);
+  const shownCards = useMemo(
+    () => cards.filter((el) => category === 0 || el.categoryId === category),
+    [category, cards]
+  );
+
+  const noCards = shownCards.length === 0;
 
   useEffect(() => {
     if (key !== "Delete") {
@@ -40,19 +38,17 @@ const CardsContainer = () => {
   return (
     <>
       <div className="cards-container">
-        <Suspense fallback={skeletons}>
-          {shownCards.map(({ id, name, category: cardCategory, categoryId, img }) => (
-            <Card
-              key={id}
-              id={id}
-              name={name}
-              category={cardCategory}
-              categoryId={categoryId}
-              img={img}
-              setCards={setCards}
-            />
-          ))}
-        </Suspense>
+        {shownCards.map(({ id, name, category: cardCategory, categoryId, img }) => (
+          <Card
+            key={id}
+            id={id}
+            name={name}
+            category={cardCategory}
+            categoryId={categoryId}
+            img={img}
+            setCards={setCards}
+          />
+        ))}
       </div>
       {noCards && isDisabled ? null : (
         <button type="button" className="button" onClick={handleClick} disabled={isDisabled}>
