@@ -17,8 +17,9 @@ import img15 from './assets/images/card-15.png';
 import img16 from './assets/images/card-16.png';
 import img17 from './assets/images/card-17.png';
 import img18 from './assets/images/card-18.png';
+import { ICard } from './types';
 
-const CARDS = [
+const CARDS: ICard[] = [
   {
     id: uuid(),
     name: 'SOFA',

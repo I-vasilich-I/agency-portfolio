@@ -12,4 +12,14 @@ interface IInputRadioOptionsProps {
   setValue?: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export type { IInputRadioOptionProps, IInputRadioOptionsProps};
+
+interface ICard {
+  id: string;
+  name: string;
+  category: string;
+  categoryId: number;
+  img: string;
+  toDelete?: boolean;
+}
+
+export type { IInputRadioOptionProps, IInputRadioOptionsProps, ICard };
