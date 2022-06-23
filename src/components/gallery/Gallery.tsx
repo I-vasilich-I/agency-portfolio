@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { CategoryContext } from '../../contextProviders/contextProviders';
 import useWindowDimensions from '../../hooks/useWindowDimensions';
@@ -6,7 +6,8 @@ import { useKeyPress } from '../../hooks/useKeyPress';
 import Card from '../card/Card';
 import CustomSelect from '../../elements/customSelect/CustomSelect';
 import InputRadioOptions from '../../elements/inputRadioOptions/inputRadioOptions';
-import { RADIO_OPTIONS, SELECT_OPTIONS, CARDS } from '../../constants';
+import Skeleton from '../../elements/skeleton/Skeleton';
+import { RADIO_OPTIONS, SELECT_OPTIONS, CARDS, MOBILE_BRAKE_POINT } from '../../constants';
 import { ICard } from '../../types';
 import './Gallery.scss';
 
@@ -17,7 +18,7 @@ const Gallery = () => {
   const [category, setCategory] = useState(0);
   const { width } = useWindowDimensions();
   const { key, setKey } = useKeyPress();
-  const isMobile = width <= 1040;
+  const isMobile = width <= MOBILE_BRAKE_POINT;
   const fieldsetClassName = classNames('categories', {'categories--select': isMobile});
  
   const handleClick = () => {
@@ -42,6 +43,14 @@ const Gallery = () => {
     setKey('');
   }, [key, setKey])
 
+  const skeletons = (
+    <>
+      <Skeleton />
+      <Skeleton />
+      <Skeleton />
+    </>
+  )
+
   return (
     <CategoryContext.Provider value={{ category, setCategory }} >
       <section className="section">
@@ -52,12 +61,14 @@ const Gallery = () => {
               : <InputRadioOptions options={RADIO_OPTIONS} />
             }   
           </fieldset>
-          <div className="cards-container">
-            {shownCards
-              .map(( {id, name, category, categoryId, img}) => 
-              <Card key={id} id={id} name={name} category={category} categoryId={categoryId} img={img} setCards={setCards} />
-            )}
-          </div>
+            <div className="cards-container">
+              <Suspense fallback={skeletons}>
+                {shownCards
+                  .map(( {id, name, category, categoryId, img}) => 
+                  <Card key={id} id={id} name={name} category={category} categoryId={categoryId} img={img} setCards={setCards} />
+                )}
+              </Suspense>
+            </div>
           <button className="button" onClick={handleClick} disabled={isDisabled}>load more</button>
         </div>
       </section>

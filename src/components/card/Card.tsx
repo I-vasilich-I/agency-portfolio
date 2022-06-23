@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { useContext, useEffect, useState, MouseEvent } from 'react';
+import { MOBILE_BRAKE_POINT } from '../../constants';
 import { CategoryContext } from '../../contextProviders/contextProviders';
 import useWindowDimensions from '../../hooks/useWindowDimensions';
 import { ICard } from '../../types';
@@ -18,7 +19,7 @@ const Card = ({id, name, category, categoryId, img, setCards }: IProps) => {
   const { setCategory } = useContext(CategoryContext);
   const [isChecked, setIsChecked] = useState(false);
   const { width } = useWindowDimensions();
-  const isMobile = width <= 1040;
+  const isMobile = width <= MOBILE_BRAKE_POINT;
   const cardClass = classNames('card', {
     'card--checked': isChecked
   })
@@ -51,7 +52,7 @@ const Card = ({id, name, category, categoryId, img, setCards }: IProps) => {
       <label htmlFor="checkbox" className='card__checkbox'>
         <input type="checkbox" name="checkbox" id="checkbox" defaultChecked={isChecked} />
       </label>
-      <img src={img} alt="" className='card__img' />
+      <img src={img} alt="" className='card__img' loading='lazy' />
       <button className="card__button" onClick={handleClick}>{category}</button>
       <h3>{name}</h3>
     </div>

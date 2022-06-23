@@ -16,6 +16,23 @@ body {
   margin: 0;
   background-color: $color-primary;
   font-family: 'Epilogue', sans-serif;
+
+  &::-webkit-scrollbar {
+    height: 7px;
+    width: 7px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $color-primary;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background:  $color-orange;
+
+    &:hover {
+      background: $color-primary-dark;
+    }
+  }
 }
 
 h1, h2, h3, h4, h5, h6, p {
@@ -47,6 +64,7 @@ ul, li {
   background-color: transparent;
   border: 1px solid $color-white-opacity-29;
   border-radius: 6px;
+  transition: all .3s ease-in-out;
 
   @include font(1.4rem, 1.4rem, $color-white, $weight: 900);
 

@@ -1,0 +1,29 @@
+%blink {
+  content: "";
+  position: absolute;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  width: 100%;
+  height: 99%;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  animation: loading 1s infinite;
+}
+
+.skeleton {
+  position: relative;
+
+  &::before {
+    @extend %blink;
+  }
+}
+
+@keyframes loading {
+  0% {
+    transform: skewX(-10deg) translateX(-100%);
+  }
+
+  100% {
+    transform: skewX(-10deg) translateX(200%);
+  }
+}
