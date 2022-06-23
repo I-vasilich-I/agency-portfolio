@@ -6,4 +6,5 @@ function getWindowDimensions() {
   };
 }
 
+// eslint-disable-next-line import/prefer-default-export
 export { getWindowDimensions };

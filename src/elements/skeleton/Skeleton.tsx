@@ -1,9 +1,5 @@
-import './Skeleton';
+import "./Skeleton.scss";
 
-const Skeleton = () => {
-  return (
-    <div className="card skeleton"></div>
-  )
-}
+const Skeleton = () => <div className="card skeleton" />;
 
 export default Skeleton;

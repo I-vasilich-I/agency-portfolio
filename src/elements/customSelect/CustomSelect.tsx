@@ -1,11 +1,13 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* based on https://css-tricks.com/striking-a-balance-between-native-and-custom-select-elements/
   I've made this custom select few months before, on game-store project, 
   there's PR link: https://github.com/I-vasilich-I/game-store/pull/8 
 */
 import { ChangeEvent, useRef, useState, useEffect, memo, useContext } from "react";
 import classnames from "classnames";
-import arrow from '../../assets/images/triangle.svg';
-import { CategoryContext } from "../../contextProviders/contextProviders";
+import arrow from "../../assets/images/triangle.svg";
+import CategoryContext from "../../contextProviders/contextProviders";
 import "./CustomSelect.scss";
 
 interface IProps {
@@ -62,8 +64,8 @@ const CustomSelect: React.FC<IProps> = ({ options, selectedOption = -1, label })
   });
 
   useEffect(() => {
-    setSelectedValue(options[category])
-  }, [category, options])
+    setSelectedValue(options[category]);
+  }, [category, options]);
 
   return (
     <div className="select">
@@ -95,7 +97,7 @@ const CustomSelect: React.FC<IProps> = ({ options, selectedOption = -1, label })
         >
           <div className="select__custom-trigger">
             {selectedValue}
-            <img src={arrow} alt="arrow" className="arrow" width={10} height={6}/>
+            <img src={arrow} alt="arrow" className="arrow" width={10} height={6} />
           </div>
           <div className="select__custom-options">
             {options.map((elem) => (

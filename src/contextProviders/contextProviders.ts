@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { createContext } from "react";
 
 const CategoryContext = createContext({
@@ -5,4 +7,4 @@ const CategoryContext = createContext({
   setCategory: (value: number) => {},
 });
 
-export { CategoryContext }
+export default CategoryContext;

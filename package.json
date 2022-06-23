@@ -25,6 +25,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "lint": "npm run lint-es && npm run lint-ts",
+    "lint-ts": "tsc --skipLibCheck --incremental --noEmit",
+    "lint-es": "eslint --fix --cache ./**/*.{js,jsx,ts,tsx,json} && prettier --write **/*.{js,jsx,ts,tsx,json,html} --loglevel warn",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -47,6 +50,21 @@
   },
   "devDependencies": {
     "@types/lodash.debounce": "^4.0.7",
-    "@types/uuid": "^8.3.4"
+    "@types/uuid": "^8.3.4",
+    "@typescript-eslint/eslint-plugin": "^5.29.0",
+    "@typescript-eslint/parser": "^5.29.0",
+    "eslint": "^8.18.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^2.7.1",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-json": "^3.1.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.30.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "prettier": "^2.7.1",
+    "prettier-eslint": "^15.0.1"
   }
 }

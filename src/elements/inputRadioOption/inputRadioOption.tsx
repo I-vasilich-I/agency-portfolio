@@ -4,10 +4,10 @@ import { IInputRadioOptionProps } from "../../types";
 import "./inputRadioOption.scss";
 
 const InputRadioOption = ({ id, value, checked, label, name, setValue }: IInputRadioOptionProps): JSX.Element => {
-  const checkedClass = classNames('radio__label', {
-    'checked': checked
+  const checkedClass = classNames("radio__label", {
+    checked,
   });
-  
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue?.(+e.target.value);
   };

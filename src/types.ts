@@ -12,7 +12,6 @@ interface IInputRadioOptionsProps {
   setValue?: React.Dispatch<React.SetStateAction<number>>;
 }
 
-
 interface ICard {
   id: string;
   name: string;
