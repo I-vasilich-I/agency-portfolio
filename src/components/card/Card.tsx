@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import classNames from "classnames";
-import { useContext, useEffect, useState, MouseEvent } from "react";
+import { useContext, useEffect, useState, MouseEvent, Suspense } from "react";
 import { MOBILE_BRAKE_POINT } from "../../constants";
 import CategoryContext from "../../contextProviders/contextProviders";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
@@ -53,16 +53,18 @@ const Card = ({ id, name, category, categoryId, img, setCards }: IProps) => {
   }, [isChecked, id, setCards]);
 
   return (
-    <div className={cardClass} onClick={handleChange}>
-      <label htmlFor="checkbox" className="card__checkbox">
-        <input type="checkbox" name="checkbox" id="checkbox" defaultChecked={isChecked} />
-      </label>
-      <img src={img} alt="" className="card__img" loading="lazy" />
-      <button type="button" className="card__button" onClick={handleClick}>
-        {category}
-      </button>
-      <h3>{name}</h3>
-    </div>
+    <Suspense>
+      <div className={cardClass} onClick={handleChange}>
+        <label htmlFor="checkbox" className="card__checkbox">
+          <input type="checkbox" name="checkbox" id="checkbox" defaultChecked={isChecked} />
+        </label>
+        <img src={img} alt="" className="card__img" loading="lazy" />
+        <button type="button" className="card__button" onClick={handleClick}>
+          {category}
+        </button>
+        <h3>{name}</h3>
+      </div>
+    </Suspense>
   );
 };
 
