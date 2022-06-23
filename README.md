@@ -1,4 +1,10 @@
-# Getting Started with Create React App
+# Agency Portfolio
+
+## [DEPLOY](https://jupiter-agency-portfolio.netlify.app/)
+
+### Haven't used `webpack, redux, etc` because it would've been overkill, `cra` is enough for this kind of project
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
