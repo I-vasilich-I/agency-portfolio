@@ -4,12 +4,12 @@ interface IInputRadioOptionProps {
   checked: boolean;
   label: string;
   name?: string;
-  setValue?: React.Dispatch<React.SetStateAction<number>>;
+  setValue?: (value: number) => void;
 }
 
 interface IInputRadioOptionsProps {
   options: IInputRadioOptionProps[];
-  setValue: React.Dispatch<React.SetStateAction<number>>;
+  setValue?: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export type { IInputRadioOptionProps, IInputRadioOptionsProps};

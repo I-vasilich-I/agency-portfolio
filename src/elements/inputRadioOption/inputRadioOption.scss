@@ -3,20 +3,18 @@
 
 .radio__label {
   position: relative;
-  --label-color:  rgba(57 20 0 / .64);
   background-color: $color-primary;
   cursor: pointer;
 
-  @include font(1.6rem, 3.2rem);
-  color: var(--label-color);
+  @include font(1.6rem, 3.2rem, rgba(57 20 0 / .64));
   
   &:hover, &:active, &:focus, &:focus-within {
     color: $color-secondary;
   }
+}
 
-  // .radio__input:checked {
-  //   --label-color: $color-secondary;
-  // }
+.checked {
+  color: $color-secondary;
 }
 
 .radio__input {

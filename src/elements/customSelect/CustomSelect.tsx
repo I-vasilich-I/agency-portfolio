@@ -2,9 +2,10 @@
   I've made this custom select few months before, on game-store project, 
   there's PR link: https://github.com/I-vasilich-I/game-store/pull/8 
 */
-import { ChangeEvent, useRef, useState, useEffect, memo } from "react";
+import { ChangeEvent, useRef, useState, useEffect, memo, useContext } from "react";
 import classnames from "classnames";
 import arrow from '../../assets/images/triangle.svg';
+import { CategoryContext } from "../../contextProviders/contextProviders";
 import "./CustomSelect.scss";
 
 interface IProps {
@@ -14,15 +15,16 @@ interface IProps {
   dispatcher?: ((value: number) => void) | null;
 }
 
-const CustomSelect: React.FC<IProps> = ({ options, selectedOption = -1, label, dispatcher = null }) => {
-  const defaultOption = selectedOption === -1 ? options[0] : options[selectedOption];
+const CustomSelect: React.FC<IProps> = ({ options, selectedOption = -1, label }) => {
+  const { category, setCategory } = useContext(CategoryContext);
+  const defaultOption = options[category] || selectedOption === -1 ? options[0] : options[selectedOption];
   const [isActive, setIsActive] = useState(false);
   const [selectedValue, setSelectedValue] = useState(defaultOption);
+  const nativeSelectRef = useRef<HTMLSelectElement>(null);
+  const customSelectRef = useRef<HTMLDivElement>(null);
   const customSelectClassName = classnames("select__custom", {
     "is-active": isActive,
   });
-  const nativeSelectRef = useRef<HTMLSelectElement>(null);
-  const customSelectRef = useRef<HTMLDivElement>(null);
 
   const handleOpen = () => {
     setIsActive((prevValue) => !prevValue);
@@ -30,6 +32,9 @@ const CustomSelect: React.FC<IProps> = ({ options, selectedOption = -1, label, d
 
   const handleClick = (option: string) => {
     setSelectedValue(option);
+    const newCategory = options.indexOf(option);
+    setCategory(newCategory);
+
     const nativeSelect = nativeSelectRef.current;
 
     if (nativeSelect) {
@@ -39,6 +44,8 @@ const CustomSelect: React.FC<IProps> = ({ options, selectedOption = -1, label, d
 
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setSelectedValue(e.target.value);
+    const newCategory = options.indexOf(e.target.value);
+    setCategory(newCategory);
   };
 
   const handleOutsideClick = (e: Event) => {
@@ -55,9 +62,8 @@ const CustomSelect: React.FC<IProps> = ({ options, selectedOption = -1, label, d
   });
 
   useEffect(() => {
-    const category = options.indexOf(selectedValue);
-    dispatcher?.(category);
-  }, [selectedValue, dispatcher, options]);
+    setSelectedValue(options[category])
+  }, [category, options])
 
   return (
     <div className="select">
