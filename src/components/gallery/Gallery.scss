@@ -1,0 +1,68 @@
+@import '../../styles/variables.scss';
+
+.section {
+  height: 100%;
+  padding-bottom: 184px;
+  max-width: $max-content-width;
+  margin: 0 auto;
+
+  @media (max-width: $mobile-width) {
+    padding-bottom: 223px;
+  }
+
+  .button {
+    background-color: $color-white;
+    color: $color-brown;
+    box-shadow: 0 3px 9px rgba(57 20 0 / 0.08);
+
+    &:disabled {
+      background-color: rgb(227, 227, 227);
+      color: rgba(0, 0, 0, 0.342);
+      box-shadow: none;
+    }
+  }
+}
+
+.section__wrapper {
+  height: 100%;
+  padding: 84px 135px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media (max-width: $mobile-width) {
+    padding: 32px 23px 0;
+  }
+}
+
+.categories {
+  padding: 0;
+  margin-bottom: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  border: none;
+
+  &--select {
+    display: block;
+    max-width: 370px;
+    width: 100%;
+    min-width: 200px;
+    margin-bottom: 48px;
+  }
+}
+
+.cards-container {
+  width: 100%;
+  margin-bottom: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px 30px;
+
+  @media (max-width: $mobile-width) {
+    max-width: 370px;
+  }
+}
+
